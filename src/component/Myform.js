@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import 'tachyons';
 
 
@@ -10,8 +9,8 @@ const Form = () => {
     const [month, setMonth] = useState(0) ; 
     const [year, setYear] = useState(0) ; 
     const [cvn, setCvn] = useState(0) ; 
-    // const [result, setResult] = useState(false) ; 
-    // const [btnAvail, setBtnAvail] = useState(false) ; 
+    const [result, setResult] = useState(false) ; 
+    const [btnAvail, setBtnAvail] = useState(false) ; 
 
     
     const nameChangeHandler = (event) => {
@@ -37,17 +36,15 @@ const Form = () => {
          console.log(event.target.value) ; // debug
          setCvn(event.target.value) ;
     } ;
-    const handleSubmit = (event) => {
-        alert('The payment was processed: ' + this.state.value);
-        event.preventDefault();
-    } ;
 
     return (
-        <div className='tc  bg-washed-green br3 pa3 ma2 dib bw2 shadow-5'> 
-            <div >
-  
-                <form onSubmit={handleSubmit} >
-                   
+        <div className='tc flex'>
+    
+            <div className='tc'>
+                <p className="App-header">          
+                    Card Details
+                </p>        
+                <form  onSubmit={submitForm}>
                     <div className=' '>
                         <label>Required Cardholder Name:</label>
                         <input 
@@ -64,18 +61,18 @@ const Form = () => {
                     
                     <div className=''>
                         <label>Required Credit Card Number:</label>
-                        <input 
-                            type="text" 
-                            name="creditCardNumber" 
-                            placeholder="No More Than 16 Digit Number" 
-                            required
-                            onChange={numChangeHandler}
-                    />
+                        <input type='text' value={name} name='name' required onChange={updateName} />
                     </div>
+                    <input 
+                        type="text" 
+                        name="creditCardNumber" 
+                        placeholder="Cardholder Name" 
+                        onChange={numChangeHandler}
+                    />
                     <div className=' '>
                         <label>Required Expiry Date:</label>
                         <div className="selectWrapper">
-                            <select name="expiryDateMonth" value={month} onChange={monthChangeHandler}/>
+                            <select name="expiryDateMonth" onChange={monthChangeHandler}/>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
@@ -87,18 +84,14 @@ const Form = () => {
                                 <option value="09">09</option>
                                 <option value="10">10</option>
                                 <option value="11">11</option>
-                                <option value="12">12</option> 
-                                                      
+                                <option value="12">12</option>                            
                         </div>                       
                     </div>
-
-
-        
 
                     <div className=' '>
                         <label>Required Expiry Date Year:</label>
                         <div className="selectWrapper">
-                            <select name="expiryDateYear" value={year} onChange={yearChangeHandler}/>
+                            <select name="expiryDateYear" onChange={yearChangeHandler}/>
                                 <option value="21">21</option>
                                 <option value="22">22</option>
                                 <option value="23">23</option>
@@ -122,7 +115,7 @@ const Form = () => {
                             minLength='3' 
                             name='code' 
                             required
-                            onChange={cvnChangeHanlder}
+                            onChange={cvnChangeHandler}
                         />
                         <p id='code' style={{ color: 'red' }}></p>
                     </div>  
@@ -132,7 +125,7 @@ const Form = () => {
         </div>
       );
 
-};
+)
 
 
 export default Form;
