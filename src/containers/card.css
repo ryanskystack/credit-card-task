@@ -149,16 +149,15 @@
 
 
 
-            .flipped {
-              transform: rotateY(180deg);
-            }
             /* entire container, keeps perspective */
             .flip-container {
             	perspective: 1000px;
             }
             /* flip the pane when hovered */
-            .flip-container:hover .flipper, .flip-container.hover .flipper {
+            /* .flip-container:hover .flipper, .flip-container.hover .flipper,  */
+            .flip-container.flip .flipper {
             	transform: rotateY(180deg);
+                transform-origin: center center;
             } 
             
             .flip-container, .ccs__card--front, .rccs__card--back {
@@ -180,11 +179,13 @@
               z-index: 2;
               /* for firefox 31 */
               transform: rotateY(0deg);
+              /* transform-origin: center; */
             }
 
             /* back, initially hidden pane */
              .rccs__card--back {
               transform: rotateY(180deg);
+              /* transform-origin: center ; */
             }
 
 

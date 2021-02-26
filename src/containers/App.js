@@ -113,10 +113,18 @@ const App = () => {
   } ;
 
   const flipBack = () => {
-    document.getElementById("flipperContainer").classList.toggle('hover');
-    // setFlip("{transform: rotateY(180deg)}");
+    document.getElementById("flipperContainer").classList.add('flip');
+
   };
 
+  const flipFront = () => {
+    let cardBack = document.getElementById("flipperContainer");
+    
+    if (cardBack.classList.contains('flip')) 
+    {
+       cardBack.classList.remove('flip');
+    };
+  };
  
 
 
@@ -135,9 +143,9 @@ const App = () => {
           Card Details
         </h1>   
       </div>
-      <div className='mw9 center '>
-        <div className='flex justify-center'>
-          <div className= 'flip-container w-100 w-30-ns pa2' id="flipperContainer">
+      <div className='mw9 center'>
+        <div className='flex justify-center cf '>
+          <div className= 'flip-container fl w-30-ns pa2' id="flipperContainer">
             <div className='flipper'>
               <div className="rccs__card--front fl.rccs--flipped">
                 <div className="rccs__card__background" >
@@ -170,103 +178,106 @@ const App = () => {
               </div>                        
             </div>
           </div>
-          <div className='fr  w-60-ns '>
+          <div className='fr  w-70-ns '>
             <div className='tc center  pa4 ma2 bw2 '>
               <p className='red'>
                 {errorMessage}
               </p>
               <form onSubmit={handleSubmit} >
-            <div className='pa3'>
-                <label>Required Cardholder Name:</label>
-                <input 
-                    type="text" 
-                    name="cardholderName" 
-                    placeholder="Cardholder Name" 
-                    onChange={nameChangeHandler}
-                    maxLength='16' 
-                    minLength='16' 
-                    required
-                />
-            </div>
-            <div className='pa3 '>
-                <label>Required Credit Card Number:</label>
-                <input 
-                    type="text" 
-                    name="creditCardNumber" 
-                    placeholder="No More Than 16 Digit Number" 
-                    maxLength='16' 
-                    minLength='16' 
-                    required
-                    onChange={numChangeHandler}
-                />
-
-            </div>
-            <div className='flex justify-center pa3'>
-              <label>Expire Date:</label>
-              <FormControl variant="outlined">
-                <InputLabel>Month</InputLabel>
-                <Select
-                  name="expiryDateMonth" 
-                  value={month} 
-                  onChange={monthChangeHandler}
-                  label="Expiry Month"
-                >
-                  <MenuItem value={'01'}>01</MenuItem>
-                  <MenuItem value={'02'}>02</MenuItem>
-                  <MenuItem value={'03'}>03</MenuItem>
-                  <MenuItem value={'04'}>04</MenuItem>
-                  <MenuItem value={'05'}>05</MenuItem>
-                  <MenuItem value={'06'}>06</MenuItem>
-                  <MenuItem value={'07'}>07</MenuItem>
-                  <MenuItem value={'08'}>08</MenuItem>
-                  <MenuItem value={'09'}>09</MenuItem>
-                  <MenuItem value={'10'}>10</MenuItem>
-                  <MenuItem value={'11'}>11</MenuItem>
-                  <MenuItem value={'12'}>12</MenuItem>
-                </Select>
-              </FormControl>   
-              <FormControl variant="outlined">
-                <InputLabel>Year</InputLabel>
-                <Select 
-                  name="expiryYear" 
-                  value={year} 
-                  onChange={yearChangeHandler}
-                  label="Expiry Year"
-                >
-                  <MenuItem value={'21'}>21</MenuItem>
-                  <MenuItem value={'22'}>22</MenuItem>
-                  <MenuItem value={'23'}>23</MenuItem>
-                  <MenuItem value={'24'}>24</MenuItem>
-                  <MenuItem value={'25'}>25</MenuItem>
-                  <MenuItem value={'26'}>26</MenuItem>
-                  <MenuItem value={'27'}>27</MenuItem>
-                  <MenuItem value={'28'}>28</MenuItem>
-                  <MenuItem value={'29'}>29</MenuItem>
-                  <MenuItem value={'30'}>30</MenuItem>
-                </Select>
-              </FormControl>   
-            </div>
-            <div className='pa3'>
-                <label>Required CVN, please flip the Credit Card to check:</label>
-                <input 
-                    type="text"
-                    name="cvn"  
-                    placeholder="3 Digit Number" 
-                    maxLength='3' 
-                    minLength='3' 
-                    required
-                    onclick={flipBack} 
-                    onChange={cvnChangeHanlder}
-
-                />      
-            </div>  
-            <button 
-              className='f6 link br-pill ph3 pa3 pv2 mb2 dib  ' 
-              type='submit' 
-              disabled={btnAvail}
-            >Make payment
-            </button>
-          </form>
+                <div className='pa3'>
+                    <label>Required Cardholder Name:</label>
+                    <input 
+                        type="text" 
+                        name="cardholderName" 
+                        placeholder="Cardholder Name"
+                        onClick={flipFront} 
+                        onChange={nameChangeHandler}
+                        maxLength='16' 
+                        minLength='16' 
+                        required
+                    />
+                </div>
+                <div className='pa3 '>
+                    <label>Required Credit Card Number:</label>
+                    <input 
+                        type="text" 
+                        name="creditCardNumber" 
+                        placeholder="No More Than 16 Digit Number" 
+                        maxLength='16' 
+                        minLength='16' 
+                        required
+                        onClick={flipFront}
+                        onChange={numChangeHandler}
+                    />
+    
+                </div>
+                <div className='flex justify-center pa3'>
+                  <label>Expire Date:</label>
+                  <FormControl variant="outlined">
+                    <InputLabel>Month</InputLabel>
+                    <Select
+                      name="expiryDateMonth" 
+                      value={month}
+                      onClick={flipFront} 
+                      onChange={monthChangeHandler}
+                      label="Expiry Month"
+                    >
+                      <MenuItem value={'01'}>01</MenuItem>
+                      <MenuItem value={'02'}>02</MenuItem>
+                      <MenuItem value={'03'}>03</MenuItem>
+                      <MenuItem value={'04'}>04</MenuItem>
+                      <MenuItem value={'05'}>05</MenuItem>
+                      <MenuItem value={'06'}>06</MenuItem>
+                      <MenuItem value={'07'}>07</MenuItem>
+                      <MenuItem value={'08'}>08</MenuItem>
+                      <MenuItem value={'09'}>09</MenuItem>
+                      <MenuItem value={'10'}>10</MenuItem>
+                      <MenuItem value={'11'}>11</MenuItem>
+                      <MenuItem value={'12'}>12</MenuItem>
+                    </Select>
+                  </FormControl>   
+                  <FormControl variant="outlined">
+                    <InputLabel>Year</InputLabel>
+                    <Select 
+                      name="expiryYear" 
+                      value={year}
+                      onClick={flipFront} 
+                      onChange={yearChangeHandler}
+                      label="Expiry Year"
+                    >
+                      <MenuItem value={'21'}>21</MenuItem>
+                      <MenuItem value={'22'}>22</MenuItem>
+                      <MenuItem value={'23'}>23</MenuItem>
+                      <MenuItem value={'24'}>24</MenuItem>
+                      <MenuItem value={'25'}>25</MenuItem>
+                      <MenuItem value={'26'}>26</MenuItem>
+                      <MenuItem value={'27'}>27</MenuItem>
+                      <MenuItem value={'28'}>28</MenuItem>
+                      <MenuItem value={'29'}>29</MenuItem>
+                      <MenuItem value={'30'}>30</MenuItem>
+                    </Select>
+                  </FormControl>   
+                </div>
+                <div className='pa3'>
+                    <label>Required CVN, please flip the Credit Card to check:</label>
+                    <input 
+                        type="text"
+                        name="cvn"  
+                        placeholder="3 Digit Number" 
+                        maxLength='3' 
+                        minLength='3' 
+                        required
+                        onClick={flipBack}
+                        onChange={cvnChangeHanlder}
+                    />      
+                </div>  
+                <button 
+                  className='f6 link br-pill ph3 pa3 pv2 mb2 dib  ' 
+                  type='submit' 
+                  disabled={btnAvail}
+                >Make payment
+                </button>
+              </form>
             </div>
           </div>
         </div>
