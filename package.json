@@ -1,5 +1,6 @@
 {
   "name": "creditcardtask",
+  "homepage": "https://ryanskystack.github.io/credit-card-task",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
